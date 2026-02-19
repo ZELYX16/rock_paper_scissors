@@ -1,6 +1,9 @@
 let humanScore = 0
 let computerScore = 0
 
+
+
+
 const getComputerChoice = () => {
     let choice = Math.floor((Math.random() * 3)) 
     console.log(choice)
@@ -13,10 +16,6 @@ const getComputerChoice = () => {
     else return "scissors"
 }
 
-const getHumanChoice = () => {
-    let choice = prompt("Enter your choice")
-    return choice
-}
 
 const playRound = (humanChoice, computerChoice) => {
 
@@ -61,26 +60,31 @@ const playRound = (humanChoice, computerChoice) => {
         console.log(`You lose ! ${computerChoice} beats ${humanCh}`);
     }
 
-}
+    let user_status = document.querySelector('.user_score');
+    user_status.innerHTML = `Human score : ${humanScore}`
 
-const playGame = () => {
-    let i = 0;
-    while (i < 5) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-
-        playRound(humanSelection, computerSelection);
-        i++
-    }
-
-    if (humanScore > computerScore) {
-        console.log("You win !!!")
-    }
-    else console.log("Computer wins !!!");
+    let system_status = document.querySelector('.system_score');
+    system_status.innerHTML = `computer score : ${computerScore} `
 
 }
 
-playGame();
+const playGame = (selection) => {
+
+    console.log("Selection : ", selection);
+    const computerSelection = getComputerChoice();
+
+    playRound(selection, computerSelection); 
+    
+
+    let result_status = document.querySelector('.result_container');
+    if (computerScore === 5) { result_status.innerHTML = `Computer wins` }
+    else if (humanScore === 5) {
+        result_status.innerHTML = `You won !!!`
+}
+    
+}
+
+
 
 
 
